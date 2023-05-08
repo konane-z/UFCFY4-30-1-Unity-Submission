@@ -6,9 +6,25 @@ public class PlayerController : MonoBehaviour
 {
 
     Rigidbody playerBody;
-    public float speed;
-    public float sensitivity;
+    public float speed = 1.0f;
+    public float sensitivity = 2.0f;
 
+    public float animationSpeed = 1.5f;
+    public float speedDampTime = 0.01f;
+
+    private Animator anim;
+    private HashIDs hash;
+    bool walking = false;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+        anim.SetLayerWeight(1, 1f);
+
+        // Import the HashID script attached to any objects with tag 'GameController'
+        hash = GameObject.FindGameObjectWithTag("GameController").GetComponent<HashIDs>();
+
+    }
 
     private void Start()
     {
@@ -21,20 +37,27 @@ public class PlayerController : MonoBehaviour
         float forward = Input.GetAxisRaw("Vertical");
         float sideways = Input.GetAxisRaw("Horizontal");
 
+
         // Calculate vector
-        Vector3 movement = new Vector3(forward, 0, -sideways);
+        Vector3 movement = new Vector3(sideways, 0, forward);
         movement *= speed;
         movement = transform.TransformDirection(movement);
 
         // Apply Force
         playerBody.AddForce(movement, ForceMode.VelocityChange);
-    }
 
-    private void Update()
-    {
+
         Camera();
-    }
 
+        MovementManagement(forward, walking);
+    }
+       
+    /*void Update()
+    {
+            Camera();
+    }
+    */
+        
     void Camera()
     {
         // Taking input from mouse left+right
@@ -48,4 +71,19 @@ public class PlayerController : MonoBehaviour
             playerBody.MoveRotation(playerBody.rotation * deltaRotation);
         }
     }
+
+    void MovementManagement(float forward, bool walking)
+        {
+        if (forward > 0)
+        {
+            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
+        }
+        else
+        {
+            anim.SetFloat(hash.speedFloat, 0);
+        }
+        
+    }
+    
 }
+
