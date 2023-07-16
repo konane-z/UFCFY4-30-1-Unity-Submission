@@ -8,6 +8,8 @@ public class DiggerController : MonoBehaviour
     Rigidbody playerBody;
     public float speed = 0f;
     public float sensitivity = 0f;
+    public GameObject diggerBase;
+    public float rotation = 0f;
 
 
     bool walking = false;
@@ -20,6 +22,7 @@ public class DiggerController : MonoBehaviour
     private void Start()
     {
         playerBody = this.GetComponent<Rigidbody>();
+        diggerBase = GameObject.Find("base");
     }
 
     private void FixedUpdate()
@@ -30,39 +33,27 @@ public class DiggerController : MonoBehaviour
 
 
         // Calculate vector
-        Vector3 movement = new Vector3(sideways, 0, forward);
+        Vector3 movement = new Vector3(0, 0, forward);
         movement *= speed;
         movement = transform.TransformDirection(movement);
 
         // Apply Force
         playerBody.AddForce(movement, ForceMode.VelocityChange);
 
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(0f, -1, 0f);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(0f, 1, 0f);
+        }
 
-        Camera();
 
         //MovementManagement(forward, walking);
     }
        
-    /*void Update()
-    {
-            Camera();
-    }
-    */
         
-    void Camera()
-    {
-        // Taking input from mouse left+right
-        float rotation = Input.GetAxis("Mouse X");
-
-        // Rotate player & camera based on left/right mouse movement
-        if (rotation != 0)
-        {
-            Quaternion deltaRotation = Quaternion.Euler(0f, rotation * sensitivity, 0f);
-
-            playerBody.MoveRotation(playerBody.rotation * deltaRotation);
-        }
-    }
-
     /* void MovementManagement(float forward, bool walking)
         {
         if (forward > 0)
