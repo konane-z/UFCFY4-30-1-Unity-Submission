@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     Rigidbody playerBody;
     public float speed = 1.0f;
     public float sensitivity = 2.0f;
@@ -15,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private HashIDs hash;
     bool walking = false;
+
+    public GameObject digger;
 
     void Awake()
     {
@@ -33,6 +34,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.C))
+        {
+            transform.position = new Vector3(0f, 100f, 0f);
+        }
+
+        if (Input.GetKey(KeyCode.V))
+        {
+            digger = GameObject.Find("digger_tom");
+            transform.position = new Vector3(digger.transform.position.x, digger.transform.position.y + 2, digger.transform.position.z - 3);
+
+        }
         // Read player inputs
         float forward = Input.GetAxisRaw("Vertical");
         float sideways = Input.GetAxisRaw("Horizontal");

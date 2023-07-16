@@ -6,7 +6,8 @@ public class DiggerTransition : MonoBehaviour
 {
     bool diggerCamera = false;
 
-     
+    public GameObject player; 
+
 
     [SerializeField]
     private DiggerController diggerController;
@@ -38,6 +39,7 @@ public class DiggerTransition : MonoBehaviour
             diggerCamera = true;
 
             cameraController.diggerCameraToggle = true;
+
         }
         if (Input.GetKey(KeyCode.V) && (diggerCamera == true))
         {
