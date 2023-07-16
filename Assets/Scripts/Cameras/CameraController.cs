@@ -6,14 +6,12 @@ public class CameraController : MonoBehaviour
 {
     public GameObject target;
     Vector3 offset;
+    Vector3 diggerOffset;
 
-   // public float cameraX = 0.0f;
+
     public float cameraY = 0.0f;
-    //public float cameraZ = 0.0f;
 
     public float cameraRotX = 0.0f;
-    public float cameraRotY = 0.0f;
-    public float cameraRotZ = 0.0f;
 
     public float rotSensitivity = 10f;
     public float panSensitivity = 0.1f;
@@ -26,19 +24,22 @@ public class CameraController : MonoBehaviour
     }
 
     // Looks at results of last frame
-    private void LateUpdate()
+    private void LateUpdate() 
     {
         if (diggerCameraToggle == false)
         {
             float desiredAngle = target.transform.eulerAngles.y;
-            Quaternion rotation = Quaternion.Euler(cameraRotX, desiredAngle, cameraRotZ);
+            Quaternion rotation = Quaternion.Euler(cameraRotX, desiredAngle, 0f);
             transform.position = target.transform.position + (rotation * offset);
             transform.LookAt(target.transform);
             transform.position = transform.position + new Vector3(0, cameraY, 0);
         }
         if (diggerCameraToggle == true)
         {
-            transform.LookAt(target.transform);
+            diggerOffset = new Vector3 (0, 8, 15);
+            Vector3 desiredPosition = target.transform.position + diggerOffset;
+            transform.position = desiredPosition;
+            transform.LookAt(target.transform.position);
         }
         }
 
@@ -56,7 +57,7 @@ public class CameraController : MonoBehaviour
         }
         if (diggerCameraToggle == true)
         {
-            target = GameObject.Find ("digger_tom");
+            target = GameObject.Find ("digger_tomCameraAnchor");
         }
 
     }
