@@ -20,6 +20,7 @@ public class DiggerTransition : MonoBehaviour
     public GameObject player;
     public GameObject wall;
     public GameObject exhaust;
+    public GameObject diggerLight;
 
     public Transform exhaustPos;
 
@@ -49,7 +50,7 @@ public class DiggerTransition : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.E) && (diggerCameraEnabled == false))
+        if (Input.GetKey(KeyCode.C) && (diggerCameraEnabled == false))
         {
             diggerController.speed = 4;
             diggerController.sensitivity = 2;
@@ -58,20 +59,18 @@ public class DiggerTransition : MonoBehaviour
             playerController.sensitivity = 0;
             playerController.animationSpeed = 0;
 
+            diggerCameraEnabled = true;
+
             player = GameObject.Find("digger_tom");
             //cameraController.diggerCameraToggle = true;
 
             mainCamera.enabled = false;
             diggerCamera.enabled = true;
 
-            diggerCameraEnabled = true;
-            Debug.Log("Semen");
-
-
         }
-        if (Input.GetKeyDown(KeyCode.E) && (diggerCameraEnabled == true))
-        {
 
+        if (Input.GetKey(KeyCode.V) && (diggerCameraEnabled == true))
+        {
             playerController.speed = 1;
             playerController.sensitivity = 2;
             playerController.animationSpeed = 1.5f;
@@ -79,16 +78,13 @@ public class DiggerTransition : MonoBehaviour
             diggerController.speed = 0;
             diggerController.sensitivity = 0;
 
-           
+            diggerCameraEnabled = false;
 
             player = GameObject.Find("char_ethan");
             //cameraController.diggerCameraToggle = false;
 
             mainCamera.enabled = true;
             diggerCamera.enabled = false;
-
-
-            diggerCameraEnabled = false;
         }
 
         if (diggerCameraEnabled == true && player == GameObject.Find("digger_tom"))
@@ -96,27 +92,30 @@ public class DiggerTransition : MonoBehaviour
 
             float dist = Vector3.Distance(miningCameraDist.position, player.transform.position);
             float dist2 = Vector3.Distance(outsideCameraDist.position, player.transform.position);
-            // print("Distance to other: " + dist);
-            if (dist2 < 50)
+            print("Distance to other: " + dist2);
+            if (dist2 < 80)
             {
                 diggerCamera.enabled = false;
-                diggerCameraEnabled = false;
+                diggerCameraEnabled = true;
 
                 miningCamera.enabled = false;
                 miningCameraEnabled = false;
 
                 outsideCamera.enabled = true;
                 outsideCameraEnabled = true;
+
+                diggerLight.SetActive(false);
             }
 
-            if (dist2 >= 50)
+            if (dist2 >= 80)
             {
 
                 outsideCamera.enabled = false;
                 outsideCameraEnabled = false;
+
             }
 
-            if (dist < 20)
+            if (dist < 20 && outsideCameraEnabled == false)
             {
                 diggerCamera.enabled = false;
                 diggerCameraEnabled = true;
@@ -127,7 +126,7 @@ public class DiggerTransition : MonoBehaviour
 
             {
                 //print("Distance to other: " + dist);
-                if (dist >= 20)
+                if (dist >= 100)
                 {
                     diggerCamera.enabled = true;
                     diggerCameraEnabled = true;

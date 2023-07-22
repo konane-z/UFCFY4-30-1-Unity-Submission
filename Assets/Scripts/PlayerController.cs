@@ -42,20 +42,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.E) && (diggerToggle == false))
+        if (Input.GetKey(KeyCode.C))
         {
             transform.position = new Vector3(0f, 100f, 0f);
             StartCoroutine(waiter());
             diggerToggle = true;
         }
         
-        if (Input.GetKey(KeyCode.E) && (diggerToggle == true))
+        if (Input.GetKey(KeyCode.V))
         {
-            StartCoroutine(waiter());
-            StartCoroutine(waiter());
-            StartCoroutine(waiter());
             digger = GameObject.Find("digger_tom");
-            transform.position = new Vector3(digger.transform.position.x, digger.transform.position.y + 9 , digger.transform.position.z);
+            transform.position = new Vector3(digger.transform.position.x, digger.transform.position.y + 5 , digger.transform.position.z);
             StartCoroutine(waiter());
             diggerToggle = false;
 

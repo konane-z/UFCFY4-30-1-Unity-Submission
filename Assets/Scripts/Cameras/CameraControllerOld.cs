@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraControllerOld : MonoBehaviour
 {
     public GameObject target;
     Vector3 offset;
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Looks at results of last frame
-    private void LateUpdate()
+    private void LateUpdate() 
     {
         if (diggerCameraToggle == false)
         {
@@ -36,14 +36,14 @@ public class CameraController : MonoBehaviour
         }
         if (diggerCameraToggle == true)
         {
-            diggerOffset = new Vector3(0, 8, 15);
+            diggerOffset = new Vector3 (0, 8, 15);
             Vector3 desiredPosition = target.transform.position + diggerOffset;
             transform.position = desiredPosition;
             transform.LookAt(target.transform.position);
         }
-    }
+        }
 
-
+    
     private void FixedUpdate()
     {
         if (diggerCameraToggle == false)
@@ -57,9 +57,9 @@ public class CameraController : MonoBehaviour
         }
         if (diggerCameraToggle == true)
         {
-            target = GameObject.Find("digger_tomCameraAnchor");
+            target = GameObject.Find ("digger_tomCameraAnchor");
         }
 
     }
-
+    
 }
