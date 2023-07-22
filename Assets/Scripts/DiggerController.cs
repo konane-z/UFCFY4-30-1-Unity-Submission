@@ -8,8 +8,13 @@ public class DiggerController : MonoBehaviour
     Rigidbody playerBody;
     public float speed = 0f;
     public float sensitivity = 0f;
+
+
     private GameObject diggerBase;
     private GameObject diggerArm;
+    public GameObject exhaust;
+
+
     public float rotation = 0f;
 
 
@@ -46,11 +51,13 @@ public class DiggerController : MonoBehaviour
         {
             transform.Rotate(0f, -speed, 0f);
             diggerArm.transform.Rotate(0f, sensitivity, 0f);
+            exhaust.transform.Rotate(0f, sensitivity, 0f);
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(0f, speed, 0f);
             diggerArm.transform.Rotate(0f, -sensitivity, 0f);
+            exhaust.transform.Rotate(0f, -sensitivity, 0f);
         }
 
 

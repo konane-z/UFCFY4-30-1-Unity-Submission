@@ -6,6 +6,7 @@ public class WallCollision : MonoBehaviour
 {
     public GameObject diggerArm;
     public GameObject wall;
+    public GameObject debris;
 
     // Start is called before the first frame update
     void Start()
@@ -15,18 +16,14 @@ public class WallCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        
-        Debug.Log("Collision");
-        wall.SetActive(false);
-        /*
-        // if digger arm is on then delete block after 2 seconds and emit particles
-        if (collision.gameObject.name == "cutting_wheel")
-        {
-            Debug.Log("Collision");
-            wall.active = false;
+        Debug.Log(collision.gameObject.name);
 
+        // if digger arm is on then delete block after 2 seconds and emit particles
+        if (collision.gameObject.name == "digger_tom")
+        {
+            debris.SetActive(true);
+            StartCoroutine(mineblock());
         }
-        */
     }
 
 
@@ -34,5 +31,13 @@ public class WallCollision : MonoBehaviour
     void Update()
     {
 
+    }
+
+    IEnumerator mineblock()
+    {
+        
+        yield return new WaitForSeconds(2);
+
+        wall.SetActive(false);
     }
 }

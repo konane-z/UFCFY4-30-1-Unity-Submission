@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     public float animationSpeed = 1.5f;
     public float speedDampTime = 0.01f;
 
+    private bool diggerToggle = false;
+
     private Animator anim;
     private HashIDs hash;
     bool walking = false;
 
     public GameObject digger;
+    public GameObject exhaust;
 
     void Awake()
     {
@@ -27,6 +30,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    IEnumerator waiter()
+    {
+        yield return new WaitForSecondsRealtime(1);
+    }
+
     private void Start()
     {
         playerBody = this.GetComponent<Rigidbody>();
@@ -34,17 +42,25 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.E) && (diggerToggle == false))
         {
             transform.position = new Vector3(0f, 100f, 0f);
+            StartCoroutine(waiter());
+            diggerToggle = true;
         }
-
-        if (Input.GetKey(KeyCode.V))
+        
+        if (Input.GetKey(KeyCode.E) && (diggerToggle == true))
         {
+            StartCoroutine(waiter());
+            StartCoroutine(waiter());
+            StartCoroutine(waiter());
             digger = GameObject.Find("digger_tom");
-            transform.position = new Vector3(digger.transform.position.x, digger.transform.position.y + 2, digger.transform.position.z - 3);
+            transform.position = new Vector3(digger.transform.position.x, digger.transform.position.y + 9 , digger.transform.position.z);
+            StartCoroutine(waiter());
+            diggerToggle = false;
 
         }
+        
         // Read player inputs
         float forward = Input.GetAxisRaw("Vertical");
         float sideways = Input.GetAxisRaw("Horizontal");
@@ -57,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
         // Apply Force
         playerBody.AddForce(movement, ForceMode.VelocityChange);
+
 
 
         Camera();

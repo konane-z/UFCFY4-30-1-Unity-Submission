@@ -6,7 +6,77 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Cubemap
+      assembly: UnityEngine.CoreModule
+      name: diffuse_cube
+    second: {fileID: 8900000, guid: 37d134c05cccba24db79bf75e8563034, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_PaintRusted3_1K_albedo
+    second: {fileID: 2800000, guid: af1e267437b9c524e9af0262338c59a4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_PaintRusted3_1K_ao
+    second: {fileID: 2800000, guid: 8ee7a824a6bd11f4ebb65914bb2389e9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_PaintRusted3_1K_normal
+    second: {fileID: 2800000, guid: 7c64da6d580543342bf29e49c6b14e5c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_PaintRusted3_1K_roughness
+    second: {fileID: 2800000, guid: 4fe88b402117d5f4c81e8a16040b3403, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Paint_Rusted_1K_albedo
+    second: {fileID: 2800000, guid: 59c985bdeca39f14ab1fc86a229ccb61, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Paint_Rusted_1K_ao
+    second: {fileID: 2800000, guid: f892f9308aa6f7f48835b29ebaa0d715, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Paint_Rusted_1K_normal
+    second: {fileID: 2800000, guid: 408623685f500d942a4c7e8a2d3847c7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Paint_Rusted_1K_roughness
+    second: {fileID: 2800000, guid: 4ef311e9c8eb03c42ad12d1e08f55b28, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_WornMetal_1K_albedo
+    second: {fileID: 2800000, guid: 9640fab68e94cbd42abd07e1906cb4c9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_WornMetal_1K_ao
+    second: {fileID: 2800000, guid: b35a317f064266a4dab421803572bc03, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_WornMetal_1K_metallic
+    second: {fileID: 2800000, guid: e9a2b0e5a91e78b47b7e759a7b1a6206, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_WornMetal_1K_normal
+    second: {fileID: 2800000, guid: 56cfb25f944c46e44927577e2df85dbd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ibl_brdf_lut
+    second: {fileID: 2800000, guid: 2836637b32b596d4db49ea2edeb8f32b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
