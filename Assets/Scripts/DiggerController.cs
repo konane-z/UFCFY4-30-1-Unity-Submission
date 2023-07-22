@@ -17,11 +17,21 @@ public class DiggerController : MonoBehaviour
 
     public float rotation = 0f;
 
+    public float animationSpeed = 1.5f;
+    public float speedDampTime = 0.01f;
+
+    private Animator anim;
+    private HashIDs hash;
 
     bool walking = false;
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
+        anim.SetLayerWeight(1, 1f);
+
+        // Import the HashID script attached to any objects with tag 'GameController'
+        hash = GameObject.FindGameObjectWithTag("GameController").GetComponent<HashIDs>();
 
     }
 
@@ -61,11 +71,11 @@ public class DiggerController : MonoBehaviour
         }
 
 
-        //MovementManagement(forward, walking);
+        MovementManagement(forward, walking);
     }
        
         
-    /* void MovementManagement(float forward, bool walking)
+     void MovementManagement(float forward, bool walking)
         {
         if (forward > 0)
         {
@@ -77,6 +87,6 @@ public class DiggerController : MonoBehaviour
         }
         
     }
-    */
+    
 }
 

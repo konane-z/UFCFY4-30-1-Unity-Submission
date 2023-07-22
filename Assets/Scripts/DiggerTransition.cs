@@ -52,8 +52,8 @@ public class DiggerTransition : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.C) && (diggerCameraEnabled == false))
         {
-            diggerController.speed = 4;
-            diggerController.sensitivity = 2;
+            diggerController.speed = 6;
+            diggerController.sensitivity = 1;
 
             playerController.speed = 0;
             playerController.sensitivity = 0;
@@ -71,7 +71,7 @@ public class DiggerTransition : MonoBehaviour
 
         if (Input.GetKey(KeyCode.V) && (diggerCameraEnabled == true))
         {
-            playerController.speed = 1;
+            playerController.speed = 2;
             playerController.sensitivity = 2;
             playerController.animationSpeed = 1.5f;
 
@@ -92,7 +92,7 @@ public class DiggerTransition : MonoBehaviour
 
             float dist = Vector3.Distance(miningCameraDist.position, player.transform.position);
             float dist2 = Vector3.Distance(outsideCameraDist.position, player.transform.position);
-            print("Distance to other: " + dist2);
+            //print("Distance to other: " + dist2);
             if (dist2 < 80)
             {
                 diggerCamera.enabled = false;
@@ -126,7 +126,7 @@ public class DiggerTransition : MonoBehaviour
 
             {
                 //print("Distance to other: " + dist);
-                if (dist >= 100)
+                if (dist >= 200)
                 {
                     diggerCamera.enabled = true;
                     diggerCameraEnabled = true;

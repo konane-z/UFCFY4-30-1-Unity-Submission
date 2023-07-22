@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody playerBody;
-    public float speed = 1.0f;
+    public float speed = 2.0f;
     public float sensitivity = 2.0f;
 
     public float animationSpeed = 1.5f;
@@ -30,11 +30,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    IEnumerator waiter()
-    {
-        yield return new WaitForSecondsRealtime(1);
-    }
-
     private void Start()
     {
         playerBody = this.GetComponent<Rigidbody>();
@@ -45,7 +40,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.C))
         {
             transform.position = new Vector3(0f, 100f, 0f);
-            StartCoroutine(waiter());
             diggerToggle = true;
         }
         
@@ -53,7 +47,6 @@ public class PlayerController : MonoBehaviour
         {
             digger = GameObject.Find("digger_tom");
             transform.position = new Vector3(digger.transform.position.x, digger.transform.position.y + 5 , digger.transform.position.z);
-            StartCoroutine(waiter());
             diggerToggle = false;
 
         }
